@@ -89,3 +89,31 @@ The system helps families preserve memories, reduce administrative burden, disco
 - [Project Proposal](docs/project-proposal.md)
 - [System Architecture](docs/system-architecture.md)
 - [MVP Roadmap](docs/mvp-roadmap.md)
+
+## Local Development
+
+```powershell
+npm.cmd start
+```
+
+Open `http://localhost:5173`.
+
+Uploaded files and metadata are stored in `storage/`, which is intentionally ignored by Git.
+
+## Deployment
+
+The app is ready for Render deployment with `render.yaml`.
+
+Recommended Render settings:
+
+- Service type: Web Service
+- Runtime: Node
+- Build command: `npm install`
+- Start command: `npm start`
+- Health check path: `/healthz`
+- Persistent disk mount path: `/opt/render/project/src/storage`
+- Environment variable: `STORAGE_DIR=/opt/render/project/src/storage`
+
+The persistent disk is required. Without it, uploaded files and `database.json` will be lost when the cloud service restarts or redeploys.
+
+Before putting private documents online, add authentication and encryption.

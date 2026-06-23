@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: ai-project
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: STORAGE_DIR
+        value: /opt/render/project/src/storage
+    disk:
+      name: digital-legacy-storage
+      mountPath: /opt/render/project/src/storage
+      sizeGB: 1

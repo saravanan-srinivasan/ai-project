@@ -5,7 +5,7 @@ const crypto = require("crypto");
 
 const root = __dirname;
 const port = Number(process.env.PORT || 5173);
-const storageDir = path.join(root, "storage");
+const storageDir = path.resolve(process.env.STORAGE_DIR || path.join(root, "storage"));
 const uploadDir = path.join(storageDir, "uploads");
 const databasePath = path.join(storageDir, "database.json");
 
@@ -514,6 +514,15 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (url.pathname === "/healthz") {
+    sendJson(res, 200, {
+      ok: true,
+      storageDir,
+      uptimeSeconds: Math.round(process.uptime())
+    });
+    return;
+  }
+
   const filePath = resolveStaticPath(url.pathname);
   if (!filePath) {
     res.writeHead(403);
@@ -535,6 +544,7 @@ const server = http.createServer((req, res) => {
 });
 
 ensureStorage();
-server.listen(port, () => {
+server.listen(port, "0.0.0.0", () => {
   console.log(`Digital Legacy Manager running at http://localhost:${port}`);
+  console.log(`Using storage directory: ${storageDir}`);
 });
