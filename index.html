@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Legacy Manager</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">DL</div>
+          <div>
+            <strong>Legacy Manager</strong>
+            <span>Secure digital estate</span>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Primary">
+          <button class="nav-item active" data-view="dashboard" title="Dashboard">
+            <span class="icon">H</span><span>Dashboard</span>
+          </button>
+          <button class="nav-item" data-view="assets" title="Assets">
+            <span class="icon">A</span><span>Assets</span>
+          </button>
+          <button class="nav-item" data-view="timeline" title="Memory timeline">
+            <span class="icon">T</span><span>Timeline</span>
+          </button>
+          <button class="nav-item" data-view="beneficiaries" title="Beneficiaries">
+            <span class="icon">B</span><span>Access</span>
+          </button>
+          <button class="nav-item" data-view="report" title="Inheritance report">
+            <span class="icon">R</span><span>Report</span>
+          </button>
+        </nav>
+
+        <div class="trust-panel">
+          <span class="status-dot"></span>
+          <div>
+            <strong>Local vault active</strong>
+            <span>Files saved on this machine</span>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Local preservation workspace</p>
+            <h1 id="view-title">Dashboard</h1>
+          </div>
+          <div class="top-actions">
+            <label class="search">
+              <span>Search</span>
+              <input id="global-search" type="search" placeholder="Search estate, policies, memories..." />
+            </label>
+            <button class="icon-button" id="lock-button" title="Lock vault" aria-label="Lock vault">Lock</button>
+          </div>
+        </header>
+
+        <section id="dashboard" class="view active">
+          <div class="hero">
+            <div class="hero-copy">
+              <p class="eyebrow">Digital estate vault</p>
+              <h2>Upload real files. Build a searchable inheritance archive.</h2>
+              <p>Save documents locally, classify assets, extract readable text, search the estate, review records, and generate inheritance reports from persisted backend data.</p>
+              <div class="hero-actions">
+                <button class="primary-button" data-view-jump="assets">Review assets</button>
+                <button class="secondary-button" data-view-jump="report">Generate report</button>
+              </div>
+            </div>
+            <div class="hero-visual" aria-label="Digital estate health">
+              <div class="orbit one"></div>
+              <div class="orbit two"></div>
+              <div class="vault-core">
+                <strong>0%</strong>
+                <span>organized</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="metric-grid" id="metric-grid"></div>
+
+          <div class="content-grid">
+            <section class="panel">
+              <div class="panel-heading">
+                <h3>System Findings</h3>
+                <button class="text-button" data-view-jump="assets">Open</button>
+              </div>
+              <div id="findings-list" class="finding-list"></div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-heading">
+                <h3>Ask The Estate</h3>
+                <span class="pill">Backend search</span>
+              </div>
+              <div class="chat">
+                <div id="chat-log" class="chat-log"></div>
+                <form id="chat-form" class="chat-form">
+                  <input id="chat-input" type="text" placeholder="Ask about policies, subscriptions, property..." />
+                  <button class="icon-button" title="Send" aria-label="Send">Go</button>
+                </form>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section id="assets" class="view">
+          <div class="toolbar">
+            <div class="segmented" id="category-tabs"></div>
+            <label class="upload-box">
+              <input id="file-upload" type="file" multiple />
+              <span>+</span>
+              <strong>Add files</strong>
+            </label>
+          </div>
+          <div class="asset-layout">
+            <section class="panel asset-table-panel">
+              <div class="panel-heading">
+                <h3>Asset Inventory</h3>
+                <span id="asset-count" class="pill"></span>
+              </div>
+              <div class="asset-table" id="asset-table"></div>
+            </section>
+            <aside class="panel inspector" id="asset-inspector"></aside>
+          </div>
+        </section>
+
+        <section id="timeline" class="view">
+          <div class="timeline-header">
+            <h2>Memory Timeline</h2>
+            <div class="range-control">
+              <span>Confidence</span>
+              <input id="confidence-slider" type="range" min="50" max="95" value="60" />
+              <strong id="confidence-value">60%</strong>
+            </div>
+          </div>
+          <div class="timeline" id="timeline-list"></div>
+        </section>
+
+        <section id="beneficiaries" class="view">
+          <div class="beneficiary-tools">
+            <form class="panel beneficiary-form" id="beneficiary-form">
+              <h3>Add Beneficiary</h3>
+              <input id="beneficiary-name" type="text" placeholder="Full name" required />
+              <input id="beneficiary-role" type="text" placeholder="Role, e.g. Executor" required />
+              <fieldset>
+                <legend>Access scope</legend>
+                <label><input type="checkbox" name="access" value="Financial" /> Financial</label>
+                <label><input type="checkbox" name="access" value="Legal" /> Legal</label>
+                <label><input type="checkbox" name="access" value="Insurance" /> Insurance</label>
+                <label><input type="checkbox" name="access" value="Memory" /> Memory</label>
+                <label><input type="checkbox" name="access" value="Medical" /> Medical</label>
+              </fieldset>
+              <button class="primary-button">Add beneficiary</button>
+            </form>
+            <section class="panel audit-panel">
+              <div class="panel-heading">
+                <h3>Audit Log</h3>
+                <span class="pill">Latest 20</span>
+              </div>
+              <div id="audit-log" class="audit-log"></div>
+            </section>
+          </div>
+          <div class="beneficiary-grid" id="beneficiary-grid"></div>
+        </section>
+
+        <section id="report" class="view">
+          <div class="report-layout">
+            <section class="report-preview" id="report-preview"></section>
+            <aside class="panel report-controls">
+              <h3>Report Builder</h3>
+              <label><input type="checkbox" data-report-section="financial" checked /> Financial assets</label>
+              <label><input type="checkbox" data-report-section="legal" checked /> Legal documents</label>
+              <label><input type="checkbox" data-report-section="insurance" checked /> Insurance policies</label>
+              <label><input type="checkbox" data-report-section="memory" checked /> Memory archive</label>
+              <label><input type="checkbox" data-report-section="medical" checked /> Medical records</label>
+              <label><input type="checkbox" data-report-section="subscription" checked /> Subscriptions</label>
+              <button class="primary-button" id="export-report">Download HTML report</button>
+            </aside>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "digital-legacy-manager",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI-powered digital legacy management prototype",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
